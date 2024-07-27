@@ -1,0 +1,9 @@
+<archetype>
+  <id>formality</id>
+  <sources>
+    <source>src/com.formality.main/java/App.java</source>
+  </sources>
+  <testSources>
+    <source>src/test/java/AppTest.java</source>
+  </testSources>
+</archetype>
