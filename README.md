@@ -5,6 +5,7 @@ all developments will continue in Java.
 
 View the javadocs for more information.
 
+[![javadoc](https://javadoc.io/badge2/io.github.ahmeterdem1/formality/javadoc.svg)](https://javadoc.io/doc/io.github.ahmeterdem1/formality)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 [See Package](https://central.sonatype.com/artifact/io.github.ahmeterdem1/formality/)
