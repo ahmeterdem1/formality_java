@@ -1,15 +1,16 @@
 package io.github.ahmeterdem1.formality.state;
 
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 /**
- * General purpose State class to build relational state based
- * structures. Each state has its own transition rules that
- * point to other states. A graph-like structure is formed
- * with collection of several states and binding transition
- * rules.
+ * The state class for finite automatas. It doesn't matter
+ * that the automata is deterministic or not.
  */
 public class FiniteState extends State {
+
+    private boolean traversed = false;
 
     public FiniteState() {
         super();
@@ -17,19 +18,6 @@ public class FiniteState extends State {
 
     public FiniteState(boolean flag) {
         super(flag);
-    }
-
-    /**
-     * Get "transitions" property of the given object. This property
-     * holds the transition rules as a HashMap object, where the keys
-     * are strings that matches are operated on, and the values are
-     * the other states that the given transition rule points to.
-     *
-     *
-     * @return a HashMap object of transition rules
-     */
-    public Map<String, FiniteState> getTransitions() {
-        return this.transitions;
     }
 
     /**
@@ -122,25 +110,12 @@ public class FiniteState extends State {
     }
 
     /**
-     * Get the exact State that "str" as a transition rule points to.
-     *
-     * @param str Transition rule to return the target State of
-     * @return Returns the State if the rule exists, null otherwise
-     */
-    public FiniteState getState(String str) {
-        if (this.transitions.containsKey(str)) {
-            return this.transitions.get(str);
-        }
-        return null;
-    }
-
-    /**
      * Perform maximum matching and returns the corresponding State.
      *
      * @param c Transition rule to match, as a char primitive
      * @return Returns the State if the rule exists, null otherwise
      */
-    public FiniteState get(char c) {
+    public State get(char c) {
         char[] array = {c};
         String match = this.getMatch(new String(array));
         if (this.transitions.containsKey(match)) {
@@ -155,7 +130,7 @@ public class FiniteState extends State {
      * @param c Transition rule to match, as a char array
      * @return Returns the State if the rule exists, null otherwise
      */
-    public FiniteState get(char[] c) {
+    public State get(char[] c) {
         String match = this.getMatch(new String(c));
         if (this.transitions.containsKey(match)) {
             return this.transitions.get(match);
@@ -170,7 +145,7 @@ public class FiniteState extends State {
      * @param c Transition rule to match, as a Character object
      * @return Returns the State if the rule exists, null otherwise
      */
-    public FiniteState get(Character c) {
+    public State get(Character c) {
         String match = this.getMatch(Character.toString(c));
         if (this.transitions.containsKey(match)) {
             return this.transitions.get(match);
@@ -185,7 +160,7 @@ public class FiniteState extends State {
      * @param str Transition rule to match, as a String
      * @return Returns the State if the rule exists, null otherwise
      */
-    public FiniteState get(String str) {
+    public State get(String str) {
         String match = this.getMatch(str);
         if (this.transitions.containsKey(match)) {
             return this.transitions.get(match);
@@ -195,20 +170,41 @@ public class FiniteState extends State {
     }
 
     /**
-     * Get the maximum possible length matching given the transition rules.
+     * Merges all the transitions of the given state, with
+     * itself. After "merging", any transition pointing from
+     * a to b, will start to point from a to a with the same rule
+     * as before. Does not modify the given state, copies it.
      *
-     * @param str String to try to match to rules
-     * @return Returns the matching String, empty String if the rule does not exist
+     * @param s1 The state to merge
+     * @return Merged state
      */
-    public String getMatch(String str) {
-        String match = "";
-        for (String s : this.transitions.keySet()) {
-            if (str.startsWith(s) && s.length() > match.length()) {
-                match = s;
-            }
+    public static FiniteState merge(FiniteState s1) {
+        Map<String, State> transitions = s1.getTransitions();
+        FiniteState result = new FiniteState();
+        for (String str : transitions.keySet()) {
+            result.addTransition(str, result);
         }
+        return result;
+    }
 
-        return match;  // An empty string means no match
+    /**
+     * Copies all the transitions of the first given state,
+     * applies "merge" based on the obtained tranisitions
+     * to the second state. Does not change both of the states,
+     * works on copies. For more information, see
+     * io.github.ahmeterdem1.formality.state.FiniteState.merge.
+     *
+     *
+     * @param s1 The state to copy the transitions of
+     * @param s2 The state to apply "merge" with the transition set
+     * @return
+     */
+    public static FiniteState copy(FiniteState s1, FiniteState s2) {
+        Map<String, State> transitions = s1.getTransitions();
+        for (String str : transitions.keySet()) {
+            s2.addTransition(str, s2);
+        }
+        return s2;
     }
 
 }

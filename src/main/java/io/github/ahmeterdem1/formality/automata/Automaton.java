@@ -1,7 +1,7 @@
 package io.github.ahmeterdem1.formality.automata;
 
 import io.github.ahmeterdem1.formality.Alphabet;
-import io.github.ahmeterdem1.formality.state.FiniteState;
+import io.github.ahmeterdem1.formality.state.State;
 
 /**
  * Base class for all types of Automatons. Getter and
@@ -9,18 +9,18 @@ import io.github.ahmeterdem1.formality.state.FiniteState;
  */
 public class Automaton {
     protected Alphabet alphabet;
-    protected FiniteState begin;
+    protected State begin;
     protected String name;
 
     public Automaton() {
         this.alphabet = new Alphabet();
-        this.begin = new FiniteState();
+        this.begin = new State();
         this.name = "";
     }
 
     public Automaton(String str) {
         this.alphabet = new Alphabet();
-        this.begin = new FiniteState();
+        this.begin = new State();
         this.name = str;
     }
 
@@ -65,7 +65,7 @@ public class Automaton {
      *
      * @param s State object that will be the initial state
      */
-    public void setBegin(FiniteState s) {
+    public void setBegin(State s) {
         this.begin = s;
     }
 
@@ -74,7 +74,7 @@ public class Automaton {
      */
     public void clearAutomaton() {
         this.alphabet = new Alphabet();
-        this.begin = new FiniteState();
+        this.begin = new State();
     }
 
     public String toString() {

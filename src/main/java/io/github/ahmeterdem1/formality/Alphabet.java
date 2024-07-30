@@ -70,6 +70,17 @@ public class Alphabet {
         this.characters.addAll(Arrays.asList(chars));
     }
 
+    /**
+     * Add characters to the Alphabet.
+     *
+     * @param str String containing all characters
+     */
+    public void setCharacters(String str) {
+        for (char c: str.toCharArray()) {
+            this.characters.add(c);
+        }
+    }
+
     public Set<Character> getCharacters() {
         return this.characters;
     }
