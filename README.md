@@ -43,7 +43,8 @@ and [MLgebra](https://github.com/ahmeterdem1/ml)
 are the best examples, where I implement *all* algorithms at *all*
 layers of abstraction, to make the complex backends of algorithms surface.
 
-There is also [semantic space]() library, which is again in pure Python, that is 
+There is also [semantic space](https://github.com/ahmeterdem1/semantic-space) 
+library, which is again in pure Python, that is 
 intended to be merged with this project. Semantic space includes tokenization and
 NLP modeling tools, where except the numerical backend which uses Numpy, is built
 from the ground up at all possible levels of abstraction.
@@ -53,9 +54,9 @@ from the ground up at all possible levels of abstraction.
 The current regex compiler in the library, is not yet complete. For now, it only features
 "(", ")" "+" and "*" special symbols, other than the language alphabet. 
 
-The engine works recursively. Each subclause in a regex string, must also include a regex.
-This idea is to create "sub-finite-machines", which are then from top to the bottom of the
-recursion stack, plugged.
+The engine works recursively. Each subclause in a regex string, must also be a regex.
+The main idea is to create "sub-finite-state-machines", which are then from top to the bottom of the
+recursion stack, plugged together to yield a single final finite state machine.
 
 Pluggings that require loops ("+" and "*"), are done via lambda transitions. Lambda transitions
 are transitions whose rule are empty. Empty transitions are checked by the validator, as the
