@@ -4,6 +4,7 @@ import io.github.ahmeterdem1.formality.automata.FiniteAutomaton;
 import io.github.ahmeterdem1.formality.state.FiniteState;
 import io.github.ahmeterdem1.formality.automata.PushdownAutomaton;
 import io.github.ahmeterdem1.formality.state.PushdownState;
+import io.github.ahmeterdem1.formality.regex.Regex;
 
 public class main {
 
@@ -33,6 +34,11 @@ public class main {
         System.out.println(String.format("String: %s\nValidation: %b\n",
                                         test,
                                         machine.validate(test)));
+
+        FiniteAutomaton regexmachine = Regex.compile("a(b)*");
+
+        System.out.println(String.format("Regex Validation: %b\n\n",
+                regexmachine.validate("ab")));
 
         // --------------------------------------------------------------------------
 

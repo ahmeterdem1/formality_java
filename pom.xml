@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.ahmeterdem1</groupId>
   <artifactId>formality</artifactId>
-  <version>0.2</version>
+  <version>0.3</version>
   <name>${project.groupId}:${project.artifactId}</name>
   <description>Language parsing and automation for Java</description>
   <url>https://github.com/ahmeterdem1/formality_java/</url>

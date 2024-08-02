@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
+// TODO: Handle lambda transitions, they must work as the last possible option
+
 /**
  * The state class for finite automatas. It doesn't matter
  * that the automata is deterministic or not.

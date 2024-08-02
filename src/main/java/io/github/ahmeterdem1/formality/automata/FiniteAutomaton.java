@@ -52,6 +52,20 @@ public class FiniteAutomaton extends Automaton {
             if (substring.isEmpty() && (next != null) && next.isFinal()) {
                 return true;
             }
+            else if (substring.isEmpty() && (next != null) && !next.isFinal()) {
+                Stack<FiniteState> stateStack = new Stack<>();
+                stateStack.push(next);
+                while (next != null && !next.isFinal()) {
+                    next = (FiniteState) next.getState("");
+                    if (stateStack.contains(next)) {
+                        return next.isFinal();
+                    }
+                    stateStack.push(next);
+                }
+                if (next != null)
+                    return next.isFinal();
+                return false;
+            }
 
             return false;
         }

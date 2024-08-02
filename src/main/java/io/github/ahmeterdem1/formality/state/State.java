@@ -82,6 +82,7 @@ public class State {
             }
         }
 
-        return match;  // An empty string means no match
+        return match;  // An empty string means no match, also it means a Lambda Transition
     }
+
 }

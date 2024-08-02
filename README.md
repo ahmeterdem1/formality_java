@@ -47,6 +47,21 @@ There is also [semantic space]() library, which is again in pure Python, that is
 intended to be merged with this project. Semantic space includes tokenization and
 NLP modeling tools, where except the numerical backend which uses Numpy, is built
 from the ground up at all possible levels of abstraction.
+
+## Regex Engine
+
+The current regex compiler in the library, is not yet complete. For now, it only features
+"(", ")" "+" and "*" special symbols, other than the language alphabet. 
+
+The engine works recursively. Each subclause in a regex string, must also include a regex.
+This idea is to create "sub-finite-machines", which are then from top to the bottom of the
+recursion stack, plugged.
+
+Pluggings that require loops ("+" and "*"), are done via lambda transitions. Lambda transitions
+are transitions whose rule are empty. Empty transitions are checked by the validator, as the
+last possible case. If no match is found, the related method returns an empty string, which
+by definition is a lambda transition.
+
  
 ````java
 
@@ -55,6 +70,7 @@ import io.github.ahmeterdem1.formality.automata.FiniteAutomaton;
 import io.github.ahmeterdem1.formality.state.FiniteState;
 import io.github.ahmeterdem1.formality.automata.PushdownAutomaton;
 import io.github.ahmeterdem1.formality.state.PushdownState;
+import io.github.ahmeterdem1.formality.regex.Regex;
 
 public class main {
     
@@ -106,6 +122,13 @@ public class main {
         // For the string to be accepted, the machine should be 
         // in a State which is marked "final", and there should
         // be no String left to read.
+
+        // Compile the regex string into a FiniteAutomata
+        FiniteAutomaton regexmachine = Regex.compile("a(b)*");
+
+        System.out.println(String.format("Regex Validation: %b\n\n",
+                regexmachine.validate("ab")));
+        // Use validate method to utilize regex
     }
     
 }
