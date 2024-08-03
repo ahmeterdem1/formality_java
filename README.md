@@ -52,7 +52,7 @@ from the ground up at all possible levels of abstraction.
 ## Regex Engine
 
 The current regex compiler in the library, is not yet complete. For now, it only features
-"(", ")" "+" and "*" special symbols, other than the language alphabet. 
+"(", ")", "[", "]", "+" and "*" special symbols, other than the language alphabet. 
 
 The engine works recursively. Each subclause in a regex string, must also be a regex.
 The main idea is to create "sub-finite-state-machines", which are then from top to the bottom of the
@@ -72,6 +72,9 @@ import io.github.ahmeterdem1.formality.state.FiniteState;
 import io.github.ahmeterdem1.formality.automata.PushdownAutomaton;
 import io.github.ahmeterdem1.formality.state.PushdownState;
 import io.github.ahmeterdem1.formality.regex.Regex;
+import io.github.ahmeterdem1.formality.regex.Match;
+
+import java.util.ArrayList;
 
 public class main {
     
@@ -130,6 +133,12 @@ public class main {
         System.out.println(String.format("Regex Validation: %b\n\n",
                 regexmachine.validate("ab")));
         // Use validate method to utilize regex
+
+        String text = "abbab";
+        // Find all matches in a text with regex
+        ArrayList<Match> matches = Regex.match(text, "a(b)+");
+        // 3 possible matches in total.
+        System.out.println(matches);
     }
     
 }

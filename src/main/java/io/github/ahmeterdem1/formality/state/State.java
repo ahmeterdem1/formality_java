@@ -29,7 +29,7 @@ public class State {
      *
      * @return true if final, false otherwise
      */
-    public boolean isFinal() {
+    public final boolean isFinal() {
         return this.FINAL;
     }
 

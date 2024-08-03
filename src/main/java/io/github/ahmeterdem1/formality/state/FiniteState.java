@@ -1,18 +1,13 @@
 package io.github.ahmeterdem1.formality.state;
 
-import java.util.HashMap;
 import java.util.Map;
-import java.util.Stack;
 
-// TODO: Handle lambda transitions, they must work as the last possible option
 
 /**
- * The state class for finite automatas. It doesn't matter
+ * The state class for finite automata. It doesn't matter
  * that the automata is deterministic or not.
  */
 public class FiniteState extends State {
-
-    private boolean traversed = false;
 
     public FiniteState() {
         super();

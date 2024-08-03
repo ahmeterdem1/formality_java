@@ -81,7 +81,7 @@ public class Alphabet {
         }
     }
 
-    public Set<Character> getCharacters() {
+    public final Set<Character> getCharacters() {
         return this.characters;
     }
 
@@ -90,7 +90,7 @@ public class Alphabet {
      *
      * @return Count of unique characters
      */
-    public int getLength() {
+    public final int getLength() {
         return this.characters.toArray().length;
     }
 
@@ -99,7 +99,7 @@ public class Alphabet {
      *
      * @return Count of unique characters
      */
-    public int getSize() {
+    public final int getSize() {
         return this.characters.toArray().length;
     }
 
